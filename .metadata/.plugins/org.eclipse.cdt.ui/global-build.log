@@ -1,31 +1,21 @@
-13:59:22 **** Incremental Build of configuration Debug for project USART3_in_pend ****
+17:10:00 **** Incremental Build of configuration Debug for project interrupt_priority ****
 make -j8 all 
-arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
-../Src/main.c:25:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
-   25 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
-      |    ^~~~~~~
-arm-none-eabi-g++ -o "USART3_in_pend.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/meisam/Documents/embedded-arm-cortex-m3-m4/USART3_in_pend/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="USART3_in_pend.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
-Finished building target: USART3_in_pend.elf
- 
-arm-none-eabi-size   USART3_in_pend.elf 
-arm-none-eabi-objdump -h -S  USART3_in_pend.elf  > "USART3_in_pend.list"
+arm-none-eabi-size   interrupt_priority.elf 
    text	   data	    bss	    dec	    hex	filename
-   4872	    100	   1900	   6872	   1ad8	USART3_in_pend.elf
+   3560	    112	   1904	   5576	   15c8	interrupt_priority.elf
 Finished building: default.size.stdout
  
-Finished building: USART3_in_pend.list
- 
-13:59:35 **** Incremental Build of configuration Debug for project USART3_in_pend ****
+17:10:05 **** Incremental Build of configuration Debug for project interrupt_priority ****
 make -j8 all 
-arm-none-eabi-size   USART3_in_pend.elf 
+arm-none-eabi-size   interrupt_priority.elf 
    text	   data	    bss	    dec	    hex	filename
-   4872	    100	   1900	   6872	   1ad8	USART3_in_pend.elf
+   3560	    112	   1904	   5576	   15c8	interrupt_priority.elf
 Finished building: default.size.stdout
  
-14:05:16 **** Incremental Build of configuration Debug for project USART3_in_pend ****
+17:10:44 **** Incremental Build of configuration Debug for project interrupt_priority ****
 make -j8 all 
-arm-none-eabi-size   USART3_in_pend.elf 
+arm-none-eabi-size   interrupt_priority.elf 
    text	   data	    bss	    dec	    hex	filename
-   4872	    100	   1900	   6872	   1ad8	USART3_in_pend.elf
+   3560	    112	   1904	   5576	   15c8	interrupt_priority.elf
 Finished building: default.size.stdout
  
