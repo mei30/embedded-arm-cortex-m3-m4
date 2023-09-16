@@ -11,64 +11,61 @@
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
+/*
+Write a program to execute an SVC instruction from thread mode,
+implement the svc handler to print the SVC number used.
+Also,  increment the SVC number by 4 and return it to the thread mode code and print it.
+Hints :
+1)Write a main() function where you should execute the SVC instruction with an argument.
+let's say SVC #0x5
+2)Implement the SVC handler
+3)In the SVC handler extract the SVC number and print it using printf
+4) Increment the SVC number by 4 and return it to the thread mode
+*/
+
 #include<stdio.h>
-
-
-#define SRAM_START 				0x20000000U
-#define SRAM_SIZE  				(128 * 1024)
-#define SRAM_END  				( (SRAM_START) + (SRAM_SIZE) )
-#define STACK_START SRAM_END
-
-#define STACK_MSP_START 		 STACK_START
-#define STACK_MSP_END   		(STACK_MSP_START - 512)
-#define STACK_PSP_START 		STACK_MSP_END
-
-
-int fun_add(int a, int b , int c , int d)
-{
-	return a+b+c+d;
-}
-
-
-/* this function changes SP to PSP */
-__attribute__((naked)) void change_sp_to_psp(void)
-{
-	__asm volatile(".equ SRAM_END, (0x20000000 + ( 128 * 1024))");
-	__asm volatile(".equ PSP_START , (SRAM_END-512)");
-	__asm volatile("LDR R0,=PSP_START");
-	__asm volatile("MSR PSP, R0");
-	__asm volatile("MOV R0,#0X02");
-	__asm volatile("MSR CONTROL,R0");
-
-	// jump to place where current functions is called.
-	__asm volatile("BX LR");
-
-}
-
-void generate_exception(void)
-{
-	/* execute SVC instruction to cause SVC exception */
-	__asm volatile("SVC #0X2");
-}
-
+#include<stdint.h>
 int main(void)
 {
-	change_sp_to_psp();
+	__asm volatile ("SVC #25");
 
-/* from here onwards PSP will be used for stack activities */
-	int ret;
+	//register uint32_t data __asm("r0");
 
-	ret = fun_add(1, 4, 5, 6);
+	uint32_t data;
 
-	printf("result = %d\n",ret);
+	__asm volatile ("MOV %0,R0": "=r"(data) ::);
 
-	generate_exception();
+	printf(" data = %ld\n",data);
 
 	for(;;);
 }
 
 
-void SVC_Handler(void)
+__attribute__ ((naked)) void SVC_Handler(void)
 {
-	printf(" in SVC_Handler\n");
+	//1 . get the value of the MSP
+	__asm("MRS R0,MSP");
+	__asm("B SVC_Handler_c");
+}
+
+void SVC_Handler_c(uint32_t *pBaseOfStackFrame)
+{
+	printf("in SVC handler\n");
+
+	uint8_t *pReturn_addr = (uint8_t*)pBaseOfStackFrame[6];
+
+	//2. decrement the return address by 2 to point to
+	//opcode of the SVC instruction in the program memory
+	pReturn_addr-=2;
+
+
+	//3. extract the SVC number (LSByte of the opcode)
+    uint8_t svc_number = *pReturn_addr;
+
+    printf("Svc number is : %d\n",svc_number);
+
+    svc_number+=4;
+
+    pBaseOfStackFrame[0] = svc_number;
+
 }

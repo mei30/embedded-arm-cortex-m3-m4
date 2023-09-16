@@ -10571,3 +10571,9 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 
 !ENTRY org.eclipse.cdt.core 1 0 2023-09-15 12:04:32.107
 !MESSAGE Indexed 'fault_gen' (3 sources, 53 headers) in 0.423 sec: 1,950 declarations; 2,832 references; 0 unresolved inclusions; 2 syntax errors; 2 unresolved names (0.042%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-09-15 14:08:41.624
+!MESSAGE Indexed 'svc_number' (3 sources, 53 headers) in 0.325 sec: 1,950 declarations; 2,832 references; 0 unresolved inclusions; 2 syntax errors; 2 unresolved names (0.042%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-09-15 16:09:44.716
+!MESSAGE Indexed 'svc_operations' (3 sources, 53 headers) in 0.41 sec: 1,950 declarations; 2,832 references; 0 unresolved inclusions; 2 syntax errors; 2 unresolved names (0.042%)

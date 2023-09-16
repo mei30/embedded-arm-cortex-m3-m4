@@ -339,3 +339,30 @@
 2023-09-15 12:04:32,855 [INFO] ApiDb:452 - User favorites MCUs=[]
 2023-09-15 12:04:32,856 [INFO] ApiDb:448 - Save user favorites file /home/meisam/.stm32cubeide/favorites.boards.txt: 0 item(s)
 2023-09-15 12:04:32,856 [INFO] ApiDb:452 - User favorites Boards=[]
+2023-09-15 14:08:14,655 [INFO] McuFinderGlobals:76 - Set McuFinderConnectedMode to false
+2023-09-15 14:08:14,655 [INFO] MultiScanPanel:200 - Auto-refresh data requested => check proxy status ongoing
+2023-09-15 14:08:14,656 [INFO] MultiScanPanel:204 - Proxy status is invalid
+2023-09-15 14:08:14,656 [INFO] FinderPluginLoader:95 - Searching for filters in installed packs
+2023-09-15 14:08:15,380 [INFO] DetailPanel:341 - Set advertising image to /home/meisam/STM32Cube/Repository//en.prom-stm32h5-mcu-finder.jpg
+2023-09-15 14:08:18,015 [INFO] MultiScanPanel:200 - Auto-refresh data requested => check proxy status ongoing
+2023-09-15 14:08:18,015 [INFO] MultiScanPanel:204 - Proxy status is invalid
+2023-09-15 14:08:18,085 [INFO] DetailPanel:341 - Set advertising image to /home/meisam/STM32Cube/Repository//en.prom-stm32h5-mcu-finder.jpg
+2023-09-15 14:08:42,272 [INFO] McuFinderGlobals:76 - Set McuFinderConnectedMode to true
+2023-09-15 14:08:42,274 [INFO] ApiDb:448 - Save user favorites file /home/meisam/.stm32cubeide/favorites.mcus.txt: 0 item(s)
+2023-09-15 14:08:42,275 [INFO] ApiDb:452 - User favorites MCUs=[]
+2023-09-15 14:08:42,275 [INFO] ApiDb:448 - Save user favorites file /home/meisam/.stm32cubeide/favorites.boards.txt: 0 item(s)
+2023-09-15 14:08:42,276 [INFO] ApiDb:452 - User favorites Boards=[]
+2023-09-15 16:09:16,735 [INFO] McuFinderGlobals:76 - Set McuFinderConnectedMode to false
+2023-09-15 16:09:16,736 [INFO] MultiScanPanel:200 - Auto-refresh data requested => check proxy status ongoing
+2023-09-15 16:09:16,736 [INFO] MultiScanPanel:204 - Proxy status is invalid
+2023-09-15 16:09:16,736 [INFO] FinderPluginLoader:95 - Searching for filters in installed packs
+2023-09-15 16:09:17,370 [INFO] DetailPanel:341 - Set advertising image to /home/meisam/STM32Cube/Repository//en.prom-stm32h5-mcu-finder.jpg
+2023-09-15 16:09:19,411 [INFO] MultiScanPanel:200 - Auto-refresh data requested => check proxy status ongoing
+2023-09-15 16:09:19,412 [INFO] MultiScanPanel:204 - Proxy status is invalid
+2023-09-15 16:09:19,485 [INFO] DetailPanel:341 - Set advertising image to /home/meisam/STM32Cube/Repository//en.prom-stm32h5-mcu-finder.jpg
+2023-09-15 16:09:46,237 [INFO] McuFinderGlobals:76 - Set McuFinderConnectedMode to true
+2023-09-15 16:09:46,239 [INFO] ApiDb:448 - Save user favorites file /home/meisam/.stm32cubeide/favorites.mcus.txt: 0 item(s)
+2023-09-15 16:09:46,239 [INFO] ApiDb:452 - User favorites MCUs=[]
+2023-09-15 16:09:46,240 [INFO] ApiDb:448 - Save user favorites file /home/meisam/.stm32cubeide/favorites.boards.txt: 0 item(s)
+2023-09-15 16:09:46,240 [INFO] ApiDb:452 - User favorites Boards=[]
+2023-09-15 16:31:50,394 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
