@@ -22,8 +22,121 @@
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
+#include <stdio.h>
+
+#include "main.h"
+
+void task1_handler(void);
+void task2_handler(void);
+void task3_handler(void);
+void task4_handler(void);
+
+void init_systick_timer(uint32_t tick_hz);
+
+void init_task_stack();
+
+__attribute__((naked)) void init_scheduler_stack(uint32_t stack_start);
+
+uint32_t psp_of_tasks[MAX_TASKS] = {TASK1_STACK_START, TASK2_STACK_START, TASK3_STACK_START, task4_handler};
+
+uint32_t task_handlers[MAX_TASKS];
+
 int main(void)
 {
+  task_handlers[0] = (uint32_t)task1_handler;
+  task_handlers[1] = (uint32_t)task2_handler;
+  task_handlers[2] = (uint32_t)task3_handler;
+  task_handlers[3] = (uint32_t)task4_handler;
+
+  init_scheduler_stack(SCHEDULER_STACK_START);
+  init_task_stack();
+  init_systick_timer(TICK_HZ);
+
     /* Loop forever */
 	for(;;);
+}
+
+void task1_handler(void)
+{
+  while(1)
+  {
+    printf("Task Handler One\n");
+  }
+}
+
+void task2_handler(void)
+{
+  while(1)
+  {
+    printf("Task Handler One\n");
+  }
+}
+
+void task3_handler(void)
+{
+  while(1)
+  {
+    printf("Task Handler Two\n");
+  }
+}
+
+void task4_handler(void)
+{
+  while(1)
+  {
+    printf("Task Handler Three\n");
+  }
+}
+
+void init_systick_timer(uint32_t tick_hz)
+{
+    uint32_t* pSRVR = (uint32_t*)0xE000E014;
+    uint32_t* pSCSR = (uint32_t*)0xE000E010;
+
+    const uint32_t count_value = (SYSTICK_TIM_CLK / tick_hz) - 1;
+
+    *pSRVR &= ~(0x00FFFFFF);
+    *pSRVR |= count_value;
+
+    *pSCSR |= (1 << 0);   // Enables the counter
+    *pSCSR |= (1 << 1);   // Enable systick exception request
+    *pSCSR |= (1 << 2);   // Enable processor clock as clock source
+}
+
+__attribute__((naked)) void init_scheduler_stack(uint32_t stack_start)
+{
+  __asm volatile("MSR MSP,%0": :"r"(stack_start):);
+  __asm volatile("BX LR");
+}
+
+void init_task_stack()
+{
+  uint32_t* pPSP;
+
+  for (int i = 0; i < MAX_TASKS; ++i)
+  {
+    pPSP = (uint32_t*)psp_of_tasks[i];
+
+    --pPSP;
+    *pPSP = DUMMY_XPSR;
+
+    --pPSP;
+    *pPSP = task_handlers[i];
+
+    --pPSP;
+    *pPSP = 0xFFFFFFFD;
+
+    for (int i = 0; i < 13; ++i)
+    {
+      --pPSP;
+      *pPSP = 0;
+    }
+
+    psp_of_tasks[i] = (uint32_t)pPSP;
+  }
+}
+
+void SysTick_Handler()
+{
+
 }
