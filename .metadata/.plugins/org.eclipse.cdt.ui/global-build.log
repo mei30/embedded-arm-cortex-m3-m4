@@ -40,3 +40,93 @@ arm-none-eabi-size   task_scheduler.elf
    4768	    104	   1984	   6856	   1ac8	task_scheduler.elf
 Finished building: default.size.stdout
  
+09:38:59 **** Build of configuration Debug for project assembly ****
+make -j8 all 
+arm-none-eabi-size   assembly.elf 
+   text	   data	    bss	    dec	    hex	filename
+    716	      8	   1568	   2292	    8f4	assembly.elf
+Finished building: default.size.stdout
+ 
+14:10:50 **** Build of configuration Debug for project svc_operations ****
+make -j8 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f407vgtx.d" -MT"Startup/startup_stm32f407vgtx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f407vgtx.o" "../Startup/startup_stm32f407vgtx.s"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+../Src/main.c:11:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+   11 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+arm-none-eabi-g++ -o "svc_operations.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/meisam/Documents/embedded-arm-cortex-m3-m4/svc_operations/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="svc_operations.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: svc_operations.elf
+ 
+arm-none-eabi-size   svc_operations.elf 
+arm-none-eabi-objdump -h -S  svc_operations.elf  > "svc_operations.list"
+   text	   data	    bss	    dec	    hex	filename
+   5504	    100	   1900	   7504	   1d50	svc_operations.elf
+Finished building: default.size.stdout
+ 
+Finished building: svc_operations.list
+ 
+14:11:04 **** Incremental Build of configuration Debug for project svc_operations ****
+make -j8 all 
+arm-none-eabi-size   svc_operations.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5504	    100	   1900	   7504	   1d50	svc_operations.elf
+Finished building: default.size.stdout
+ 
+14:12:40 **** Incremental Build of configuration Debug for project svc_operations ****
+make -j8 all 
+arm-none-eabi-size   svc_operations.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5504	    100	   1900	   7504	   1d50	svc_operations.elf
+Finished building: default.size.stdout
+ 
+14:13:06 **** Incremental Build of configuration Debug for project svc_operations ****
+make -j8 all 
+arm-none-eabi-size   svc_operations.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5504	    100	   1900	   7504	   1d50	svc_operations.elf
+Finished building: default.size.stdout
+ 
+14:13:24 **** Incremental Build of configuration Debug for project svc_operations ****
+make -j8 all 
+arm-none-eabi-size   svc_operations.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5504	    100	   1900	   7504	   1d50	svc_operations.elf
+Finished building: default.size.stdout
+ 
+14:23:22 **** Incremental Build of configuration Debug for project svc_operations ****
+make -j8 all 
+arm-none-eabi-size   svc_operations.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5504	    100	   1900	   7504	   1d50	svc_operations.elf
+Finished building: default.size.stdout
+ 
+14:25:37 **** Incremental Build of configuration Debug for project svc_operations ****
+make -j8 all 
+arm-none-eabi-size   svc_operations.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5504	    100	   1900	   7504	   1d50	svc_operations.elf
+Finished building: default.size.stdout
+ 
+15:24:39 **** Incremental Build of configuration Debug for project svc_operations ****
+make -j8 all 
+arm-none-eabi-size   svc_operations.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5504	    100	   1900	   7504	   1d50	svc_operations.elf
+Finished building: default.size.stdout
+ 
+17:46:44 **** Incremental Build of configuration Debug for project svc_operations ****
+make -j8 all 
+arm-none-eabi-size   svc_operations.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5504	    100	   1900	   7504	   1d50	svc_operations.elf
+Finished building: default.size.stdout
+ 
+18:18:17 **** Incremental Build of configuration Debug for project svc_operations ****
+make -j8 all 
+arm-none-eabi-size   svc_operations.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5504	    100	   1900	   7504	   1d50	svc_operations.elf
+Finished building: default.size.stdout
+ 

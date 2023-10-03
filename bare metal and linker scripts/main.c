@@ -23,6 +23,7 @@ void task2_handler(void); //this is task2
 void task3_handler(void); //this is task3
 void task4_handler(void); // this is task4 of the application
 
+extern void initialise_monitor_handles(void);
 
 void init_systick_timer(uint32_t tick_hz);
 __attribute__((naked)) void init_scheduler_stack(uint32_t sched_top_of_stack);
@@ -57,7 +58,11 @@ int main(void)
 
 	enable_processor_faults();
 
+	initialise_monitor_handles();
+
 	init_scheduler_stack(SCHED_STACK_START);
+
+	printf("Implementation of simple task scheduler\n");
 
 	init_tasks_stack();
 

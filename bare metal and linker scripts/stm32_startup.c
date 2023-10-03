@@ -5,6 +5,16 @@
 
 #define SRAM_END    ((SRAM_START) + (SRAM_SIZE)) 
 
+extern uint32_t _etext;
+extern uint32_t _sdata;
+extern uint32_t _edata;
+extern uint32_t _ebss;
+extern uint32_t _sbss;
+extern uint32_t _la_data;
+
+int main(void);
+void __libc_init_array(void);
+
 void Reset_Handler();
 
 void NMI_Handler 					(void) __attribute__ ((weak, alias("Default_Handler")));
@@ -99,7 +109,7 @@ void HASH_RNG_IRQHandler         	(void) __attribute__ ((weak, alias("Default_Ha
 void FPU_IRQHandler              	(void) __attribute__ ((weak, alias("Default_Handler"))); 
 
 
-uint32_t vectors[] = {
+uint32_t vectors[] __attribute__((section(".isr_vector"))) = {
     SRAM_END,
     (uint32_t)&Reset_Handler,
     (uint32_t)&NMI_Handler,
@@ -120,6 +130,7 @@ uint32_t vectors[] = {
     (uint32_t)&PVD_IRQHandler,
     (uint32_t)&TAMP_STAMP_IRQHandler,
     (uint32_t)&RTC_WKUP_IRQHandler 	,
+    0,
     (uint32_t)&RCC_IRQHandler ,
     (uint32_t)&EXTI0_IRQHandler 				,
     (uint32_t)&EXTI1_IRQHandler 				,
@@ -206,5 +217,24 @@ void Default_Handler(void)
 
 void Reset_Handler(void)
 {
+    uint32_t size = (uint32_t)&_edata - (uint32_t)&_sdata;
 
+    uint8_t* pDst = (uint8_t*)&_sdata;
+    uint8_t* pSrc = (uint8_t*)&_la_data;
+
+    for (uint32_t i = 0; i < size; ++i)
+    {
+        *pDst++ = *pSrc++;
+    }
+
+    size = &_ebss - &_sbss;
+    pDst = (uint8_t*)&_sbss;
+    for (uint32_t i = 0; i < size; ++i)
+    {
+        *pDst++ = 0;
+    }
+
+    __libc_init_array();
+
+    main();
 }
